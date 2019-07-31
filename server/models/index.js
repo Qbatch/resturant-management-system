@@ -1,5 +1,5 @@
 import './items';
 import './users';
-import './order';
+import './orders';
 import './orderItems';
 

@@ -2,12 +2,12 @@ var mongoose = require('mongoose');
 
 var user = new mongoose.Schema({
 
-   name :  {type : String} ,
-   userName :  {type : String} ,
-   password :  {type : String} ,
-   contact :  {type : String} ,
+   name :  {type : String , required: true} ,
+   userName :  {type : String , required: true} ,
+   password :  {type : String , required: true} ,
+   contact :  {type : String , required: true} ,
 
-   role :  {type : String} ,
+   role :  {type : String , required: true} ,
    availabilityStatus :  {type : String} ,
    shippingAddress :  {type : String} ,
 
