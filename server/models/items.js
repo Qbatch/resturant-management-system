@@ -1,4 +1,4 @@
-import mongoose from 'mongoose';
+var mongoose = require('mongoose');
 
 const item = new mongoose.Schema({
   
@@ -12,4 +12,4 @@ const item = new mongoose.Schema({
   updated : {type : Date}
 });
 
-export default mongoose.model('item' , item );
+module.export = mongoose.model('items' , item );

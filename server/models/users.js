@@ -6,7 +6,7 @@ var user = new mongoose.Schema({
    userName :  {type : String , required: true} ,
    password :  {type : String , required: true} ,
    contact :  {type : String , required: true} ,
-
+   
    role :  {type : String , required: true} ,
    availabilityStatus :  {type : String} ,
    shippingAddress :  {type : String} ,
@@ -17,4 +17,4 @@ var user = new mongoose.Schema({
 });
 
 
-module.exports = mongoose.model('user' , user);
+module.exports = mongoose.model('users' , user);

@@ -12,4 +12,4 @@ var orderItem = new mongoose.Schema({
 });
 
 
-module.exports = mongoose.model('orderItem' , orderItem);
+module.exports = mongoose.model('orderItems' , orderItem);
