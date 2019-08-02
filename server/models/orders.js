@@ -11,4 +11,4 @@ const order = new mongoose.Schema({
   completed : {type : Date}
 });
 
-module.export = mongoose.model('orders', order);
+module.exports = mongoose.model('orders', order);

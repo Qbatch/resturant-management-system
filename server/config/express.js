@@ -10,5 +10,6 @@ app.use(function(req, res, next) {
   next();
 });
 
-
 app.listen(3002, () => console.log(`Example app listening on port ${3002}!`))
+
+module.exports = app;
