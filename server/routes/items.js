@@ -1,6 +1,6 @@
 var express = require('express')
-var  { addItem } = require( '../controllers/item/add-Item');
-// import { addItem } from '../controllers/item/add-Item';
+// var  { addItem } = require( '../controllers/item/add-Item');
+import addItem from '../controllers/item/add-Item';
 const Router = express.Router();
 
 Router.route('/routeAddItem').post( (req,res) => {
@@ -20,4 +20,4 @@ Router.route('/routeAddItem').post( (req,res) => {
 
 });
 
-module.exports = Router ;
+export default Router ;
