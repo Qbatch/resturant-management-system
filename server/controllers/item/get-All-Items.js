@@ -1,18 +1,9 @@
-var app = require('../config/express');
-const item = require('../models/items')
+import Item from '../../models/items'
 
 const getAllItems = async () => {
-    app.get('/getAllItems',function(req,res){
-
-        console.log(' It is (getAllItems) API ');
-        await item.find({})
-        .then(function( all ){
-            res.json(all);
-            const rtnObj = all
-        });
-
-    });
-    return rtnObj;
+    console.log(' It is (getAllItems) Controller ');
+    const items = await Item.find({});
+    return {items};
 }
 
-module.exports = getAllItems ;
+export default getAllItems ;

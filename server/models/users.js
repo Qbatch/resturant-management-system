@@ -1,9 +1,8 @@
-var mongoose = require('mongoose');
-
+import mongoose from 'mongoose'
 var user = new mongoose.Schema({
 
    name :  {type : String , required: true} ,
-   userName :  {type : String , required: true} ,
+   email :  {type : String , required: true} ,
    password :  {type : String , required: true} ,
    contact :  {type : String , required: true} ,
    
@@ -17,4 +16,4 @@ var user = new mongoose.Schema({
 });
 
 
-module.exports = mongoose.model('users' , user);
+export default mongoose.model('User' , user);

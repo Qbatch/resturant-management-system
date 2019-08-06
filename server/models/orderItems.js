@@ -1,4 +1,4 @@
-var mongoose = require('mongoose');
+import mongoose from 'mongoose'
 
 var orderItem = new mongoose.Schema({
 
@@ -12,4 +12,4 @@ var orderItem = new mongoose.Schema({
 });
 
 
-module.exports = mongoose.model('orderItems' , orderItem);
+export default mongoose.model('orderItems' , orderItem);

@@ -1,5 +1,5 @@
-var app = require('../config/express');
-const User = require('../models/users')
+import app from '../config/express'
+import User from '../models/users'
 
 app.get('/getAllUsers',function(req,res){
     

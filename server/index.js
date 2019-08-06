@@ -1,2 +1,2 @@
-require ('./config')
-require ('./models')
+import './config'
+import './models'

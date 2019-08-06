@@ -85,3 +85,17 @@ app.put('/updateItemById', function(req, res) {
   "price": "5556465",
   "details": "reqbodydetails",
   "image": "reqbodyurl"
+
+
+
+  {
+
+	"email": "bilal@gmail.com",
+	"password": "mohsin",
+	"name":"Bilal",
+	"contact": "03230000118", 
+	"role":"rider",
+	"availabilityStatus": "true",
+	"shippingAddress": "DHA Phase 1 BU'GER Off First Floor"
+
+}

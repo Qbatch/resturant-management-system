@@ -1,4 +1,4 @@
-var mongoose = require('mongoose');
+import mongoose from 'mongoose'
 
 const order = new mongoose.Schema({
 
@@ -11,4 +11,4 @@ const order = new mongoose.Schema({
   completed : {type : Date}
 });
 
-module.exports = mongoose.model('orders', order);
+export default mongoose.model('orders', order);

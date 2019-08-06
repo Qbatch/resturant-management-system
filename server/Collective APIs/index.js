@@ -1,4 +1,4 @@
-require('./item')
-require('./user')
-require('./order')
-require('./orderItem')
+import './item'
+import './user'
+import './order'
+import './orderItem'

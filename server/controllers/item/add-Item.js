@@ -1,19 +1,15 @@
-const item = require('../../models/items')
+import Item from '../../models/items'
 
-const addItem = async () =>{
+const addItem = async ({ name ,  price ,  details ,  image }) => {
   
-  app.post('/addItem', function (req, res ) {
-    console.log(' It is (addItem) API ');
+    console.log(' It is (addItem) Controller ');
   
-      item.updateOne(
-      {name:req.body.name} , 
-      {prize:550 , details:req.body.details , image:req.body.image , created:new Date()} , 
-      {upsert:true}
-    ).then(function(report){
-          res.send(report);
-    });
-  });
+      const res = await Item.updateOne( {name:name }, 
+        {price:price , details:details , image:image , created:new Date()} , 
+        {upsert:true}
+      );
+      return res ;
 
 }
 
-module.exports = addItem ;       
+export default addItem ;

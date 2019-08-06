@@ -1,6 +1,6 @@
-const express = require('express');
+import express from 'express'
+import bodyParser from 'body-parser'
 var app = express()
-var bodyParser = require('body-parser');
 
 app.use(bodyParser.json());
 app.use(function(req, res, next) {
@@ -12,4 +12,4 @@ app.use(function(req, res, next) {
 
 app.listen(3002, () => console.log(`Example app listening on port ${3002}!`))
 
-module.exports = app;
+export default  app;

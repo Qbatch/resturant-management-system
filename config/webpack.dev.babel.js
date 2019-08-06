@@ -4,7 +4,7 @@ import HtmlWebpackPlugin from 'html-webpack-plugin';
 import MiniCssExtractPlugin from 'mini-css-extract-plugin';
 
 const config = {
-  entry: path.resolve(__dirname, '../client/index.js'),
+  entry: path.resolve(__dirname, '../src/index.js'),
   mode: 'development',
   devtool: 'source-map',
   output: {

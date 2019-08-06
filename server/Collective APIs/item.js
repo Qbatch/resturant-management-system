@@ -1,5 +1,5 @@
-var app = require('../config/express');
-const item = require('../models/items')
+import app from '../config/express' ;
+import item from '../models/items' ;
 
 app.get('/getAllItems',function(req,res){
   

@@ -1,4 +1,5 @@
-require ('./database')
-require ('./express')
-require ('../Collective APIs')
-require ('../routes')
+import './database'
+import './express'
+import '../Collective APIs'
+import '../routes'
+import '../middleware'
