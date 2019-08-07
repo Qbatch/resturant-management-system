@@ -4,11 +4,11 @@ import HtmlWebpackPlugin from 'html-webpack-plugin';
 import MiniCssExtractPlugin from 'mini-css-extract-plugin';
 
 const config = {
-  entry: path.resolve(__dirname, '../src/index.js'),
+  entry: path.resolve(__dirname, '../client/index.js'),
   mode: 'development',
   devtool: 'source-map',
   output: {
-    filename: 'ooo.js',
+    filename: '[name].js',
     path: path.resolve(__dirname, '../dist'),
     publicPath: '/',
     pathinfo: false
@@ -31,8 +31,7 @@ const config = {
             hmr: process.env.NODE_ENV === 'development'
           }
         },
-        'css-loader',
-        'less-loader'
+        'css-loader'
       ]
     }, {
       type: 'javascript/auto',
@@ -57,8 +56,8 @@ const config = {
   },
   plugins: [
     new HtmlWebpackPlugin({
-      filename: 'index.html',
-      template: path.resolve(__dirname, '../src/index.html')
+      // filename: 'index.html',
+      template: path.resolve(__dirname, '../client/index.html')
     }),
     new MiniCssExtractPlugin({
       filename: '[name].css',
