@@ -3,7 +3,7 @@ import passport from 'passport';
 import express from 'express';
 import '../middleware'
 const Router = express.Router();
-const jwtSecret = "i am adeveloper !!!!";
+import { jwtSecret } from '../../config/settings.json' 
 
 Router.post('/login', (req, res) => {
   console.log("Request Body ",req.body)
@@ -24,11 +24,11 @@ Router.post('/login', (req, res) => {
     });
   })(req, res);
 });
-  
+
 
 Router.post('/register', (req, res, next) => {
   passport.authenticate('signup', { session: false }, (err, user, info) => {
-    // console.log('Request Body : ', req.body );
+    console.log('Request Body : ', req.body.inputObj );
     // console.log('Register: ', { err, user, info });
 
     if (err || !user) {
@@ -49,8 +49,19 @@ Router.post('/register', (req, res, next) => {
 });
 
 
+Router.get('/findUser', (req, res) => {
+  // console.log("findUser Route  request.body is :::: ", req.body);
+  passport.authenticate('jwt', { session: false }, (err, user, info) => {
+    console.log('Find User: ', { err, user, info });
 
+    if (err || !user) {
+      // return res.status(400).send(err && err.message);
+      return res.status(500).send('No User Found .... : ', err)
+    }
+    return res.json({ user });
 
+  })(req, res);
+});
 
 
 export default Router;

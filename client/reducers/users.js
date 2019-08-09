@@ -1,10 +1,78 @@
 const initialState = {
-  list: [],
+  fetching: false,
+  name:null,
+  email:null,
+  password:null,
+  role:null,
+  availabilityStatus:null,
+  shippingAddress:null
 
  };
 
-const users = (state = initialState, action) => {
+const user = (state = initialState, action) => {
   switch (action.type) {
+
+
+    case 'REGISTER_USER_REQUEST': {
+      return {
+        ...state,
+        fetching: true
+      };
+    }
+    case 'REGISTER_USER_SUCCESS': {
+      return {
+        ...state,
+        fetching: false,
+        ...action.payload
+      };
+    }
+    case 'REGISTER_USER_FAILED': {
+      return {
+        ...state,
+        fetching: false
+      };
+    }
+    case 'LOGIN_USER_REQUEST': {
+      return {
+        ...state,
+        fetching: true
+      };
+    }
+    case 'LOGIN_USER_SUCCESS': {
+      return {
+        ...state,
+        fetching: false,
+        ...action.payload
+      };
+    }
+    case 'LOGIN_USER_FAILED': {
+      return {
+        ...state,
+        fetching: false
+      };
+    }
+    case 'GET_USER_REQUEST': {
+      return {
+        ...state,
+        fetching: true
+      };
+    }
+    case 'GET_USER_SUCCESS': {
+      return {
+        ...initialState,
+        fetching: false,
+        ...action.payload
+      };
+    }
+    case 'GET_USER_FAILED': {
+      return {
+        ...state,
+        fetching: false
+      };
+    }
+
+
+
 
     case 'ADD_USER':    
       return {
@@ -70,7 +138,7 @@ const users = (state = initialState, action) => {
   }
 }
  
-export default users
+export default user
 
 
 

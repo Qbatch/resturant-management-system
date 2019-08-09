@@ -62,10 +62,10 @@ app.post('/addUser', function (req, res ) {
 
 
 // {
-// "userName": "fasal",
-// "name": "fasal", 
-// "password": "fasal", 
-// "contact": "fasal", 
+// "email": "halwakhan",
+// "name": "halwakhan", 
+// "password": "halwakhan", 
+// "contact": "halwakhan", 
 
 // "role":"customer",
 // "availabilityStatus": "true",

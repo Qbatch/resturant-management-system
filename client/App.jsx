@@ -6,15 +6,17 @@ import RegistrationForm from './components/authentication/register.jsx'
 
 import { store } from './configureStore'
 import { Provider } from 'react-redux'
+import RenderRoutes from './routes';
 
 const App = () => {
     return(
         <Provider store= {store} >
-            <h1 className="h">Users</h1>
-            <div > 
-                {/* <LoginForm />  */}
+            <RenderRoutes />
+            {/* <h1 className="h">Users</h1> */}
+            {/* <div > 
+                <LoginForm /> 
                 <RegistrationForm /> 
-            </div>
+            </div> */}
         </Provider>
     )
 }

@@ -1,10 +1,6 @@
+
 import React from 'react';
 import 'antd/dist/antd.css';
-import './index.css';
-
-import { connect } from 'react-redux'
-import { registerUser } from '../../actions/users'
-
 import {
   Form,
   Input,
@@ -28,7 +24,7 @@ class registrationForm extends React.Component {
     this.props.form.validateFieldsAndScroll((err, values) => {
       if (!err) {
         console.log('Here FrontEnd recieves values from Form : ', values);
-        this.props.registerUser(values);
+        this.props.adduser(values);
       }
     });
   };
@@ -216,15 +212,4 @@ class registrationForm extends React.Component {
 }
 const RegistrationForm = Form.create({ name: 'register' })(registrationForm);
 
-
-
-const mapDispatchToProps = (dispatch) => ({
-    registerUser: (inputObj) => dispatch( registerUser(inputObj) ),
-}) 
-
-const mapStateToProps = (state) => ({ 
-    users: state.users.list, 
-})
-
-export default connect(mapStateToProps , mapDispatchToProps)(RegistrationForm) ;
-          
+export default RegistrationForm

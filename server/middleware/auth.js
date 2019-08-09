@@ -4,8 +4,7 @@ import { Strategy as LocalStrategy } from 'passport-local';
 import { Strategy as JWTstrategy, ExtractJwt } from 'passport-jwt';
 
 import User from '../models/users';
-const jwtSecret = 'iamdeveloper';
-
+import {jwtSecret} from '../../config/settings.json'
 const BCRYPT_SALT_ROUNDS = 12;
 
 
