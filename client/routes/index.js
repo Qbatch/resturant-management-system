@@ -9,8 +9,12 @@ import { Spin } from 'antd';
 
 import Register from '../components/authentication/Register.jsx'
 import Login from '../components/authentication/Login.jsx';
+import AdminGrid from '../components/admin-dashbaord/admin-dashboard.jsx'
 //import ForgotPassword from '../components/authentication/ForgotPassword.jsx'
 //import ResetPassword from '../components/authentication/ResetPassword.jsx'
+import AppLayout from '../layouts/AppLayout.jsx';
+import AdminLayout from '../layouts/AdminLayout.jsx';
+import itemsGrid from '../components/items_dashboard/items_Grid.jsx'
 
 const AUTHORIZATION = localStorage.getItem('loginToken');
 axios.defaults.headers.common['Authorization'] = `JWT ${AUTHORIZATION}`;
@@ -36,15 +40,17 @@ class RenderRoutes extends React.Component {
 
   renderRoutes = () => {
     const { user } = this.props;
-
+    console.log('this is the user',user);
     return (
       <Router>
         <Switch>
           <Route exact path="/">
             <Redirect to="/login" />
           </Route>
-          <Route path="/login" component={Login} user={user} />
-          <EmptyLayoutRoute path="/register" component={Register} user={user} />
+          <AppLayoutRoute path="/login" component={Login} user={user} />
+          <Route path="/register" component={Register} user={user} />
+          <Route path="/items" component={itemsGrid} user={user} />
+          <AdminLayoutRoute path="/admin-dashboard" component={AdminGrid} user={user}/>
         </Switch>
       </Router>
     );
@@ -61,104 +67,59 @@ class RenderRoutes extends React.Component {
     );
   }
 };
+const AppLayoutRoute = ({ component: Component, user, ...rest}) => {
+  const redirectToRelativePage = () => {
+    if (!user || !user._id) {
+      return (<Redirect to='/login' />);
+    } else if (user.role=='admin') {
+        return (<Redirect to='/admin-dashboard' />);
+    } else if (user.role == 'rider'){
+        return (<Redirect to='/register' />)
+    } else if (user.role == 'user'){
+        return (<Redirect to= '/' />)
+    }
+    return ('');
+  }
 
-// const AppLayoutRoute = ({ component: Component, user, ...rest}) => {
-//   const redirectToRelativePage = () => {
-//     if (!user || !user._id) {
-//       return (<Redirect to='/login' />);
-//     } else if (user.admin) {
-//         return (<Redirect to='/admin-dashboard' />);
-//     } /*else if (user.status === 'Pending') {
-//          return (<Redirect to='/payment' />)
-//     } */
-//     return ('');
-//   }
+  let showLayout = true;
+  if (!user._id ) {
+    showLayout = false;
+  }
+  console.log("hye from applayout ");
+  return (
+    <Route {...rest} render={matchProps => (
+      showLayout
+      ? redirectToRelativePage()
+      : (<AppLayout>
+        <Component {...matchProps} />
+      </AppLayout>)
+    )} />
+  )
+};
+const AdminLayoutRoute = ({ component: Component, user, ...rest }) => {
+  const redirectToRelativePage = () => {
+    if (!user._id ) {
+      return (<Redirect to='/login' />);
+    } else if (user.role==='admin') {
+      return (<Redirect to='/admin-dashboard' />);
+    }
+  }
 
-//   let showLayout = true;
-//   if (!user._id || user.admin || user.status === 'Pending') {
-//     showLayout = false;
-//   }
-
-//   return (
-//     <Route {...rest} render={matchProps => (
-//       showLayout
-//       ? (<AppLayout>
-//           <Component {...matchProps} />
-//         </AppLayout>)
-//       : redirectToRelativePage()
-//     )} />
-//   )
-// };
-
-// const AdminLayoutRoute = ({ component: Component, user, ...rest }) => {
-//   const redirectToRelativePage = () => {
-//     if (!user._id) {
-//       return (<Redirect to='/login' />);
-//     } else if (user.admin) {
-//       return (<Redirect to='/admin-dashboard' />);
-//     }
-
-//     return (<Redirect to='/items-repricer' />);
-//   }
-
-//   let showLayout = true;
-//   if (!user._id || !user.admin) {
-//     showLayout = false;
-//   }
-
-//   return (
-//     <Route {...rest} render={matchProps => (
-//       showLayout
-//         ? (<AdminLayout>
-//           <Component {...matchProps} />
-//         </AdminLayout>)
-//         : redirectToRelativePage()
-//     )} />
-//   )
-// };
-
-// const PostSignUpLayoutRoute = ({ component: Component, user, ...rest }) => {
-//   const redirectToRelativePage = () => {
-//     if (!user._id) {
-//         return (<Redirect to='/login' />);
-//     } else if (user.admin) {
-//         return (<Redirect to='/admin-dashboard' />);
-//     }
-//     return (<Redirect to='/settings/mws' />);
-//   }
-
-//   let showLayout = false;
-//   if (user.status === 'Pending') {
-//     showLayout = true;
-//   }
-//   return (
-//     <Route {...rest} render={matchProps => (
-//       showLayout
-//         ? (<PostSignUpLayout>
-//           <Component {...matchProps} />
-//         </PostSignUpLayout>)
-//         : redirectToRelativePage()
-//     )} />
-//   )
-// };
-
-// const EmptyLayoutRoute = ({ component: Component, user, ...rest}) => {
-//   let showLayout = true;
-//   if (!user || !user._id) {
-//     showLayout = false;
-//   }
-
-//   return (
-//     <Route {...rest} render={matchProps => (
-//       showLayout
-//       ? (<Redirect to='/items-repricer' />)
-//       : (<EmptyLayout>
-//           <Component {...matchProps} />
-//         </EmptyLayout>)
-//     )} />
-//   )
-// };
-
+  let showLayout = true;
+  if (!user._id ) {
+    showLayout = false;
+  }
+  console.log('show layout in admin is  ',showLayout)
+  return (
+    <Route {...rest} render={matchProps => (
+      showLayout
+        ? (<AdminLayout>
+          <Component {...matchProps} />
+        </AdminLayout>)
+        : redirectToRelativePage()
+    )} />
+  )
+};
 const mapStateToProps = ({ user }) => ({ user });
 
 const mapDispatchToProps = (dispatch) => ({

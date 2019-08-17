@@ -1,8 +1,8 @@
 import React from 'react';
 import { Layout, Menu, Breadcrumb, Icon, Dropdown } from 'antd';
-import './AppLayout.less';
 
-class EmptyLayout extends React.Component {
+
+class AppLayout extends React.Component {
 
   render() {
     const { children } = this.props;
@@ -15,4 +15,4 @@ class EmptyLayout extends React.Component {
   }
 }
 
-export default EmptyLayout;
+export default AppLayout;

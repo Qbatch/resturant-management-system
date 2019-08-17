@@ -1,5 +1,5 @@
 .login-form {
-  max-width: 500px;
+  max-width: 300px;
   position: relative;
   top: 45%;
   left: 50%;
@@ -12,12 +12,22 @@
 .login-form-forgot {
   float: right;
 }
-.login-form-button {
+.form-button {
   width: 100%;
-  position: relative;
 }
-.login-form-item {
-  top:50%;
-  height: 20px
- }
- 
+.form-item {
+ height: 20px
+}
+.Form-heading {
+  top: 200px;
+}
+.w3-tangerine {
+  position: relative;
+  font-family: "Tangerine", serif;
+  font-size:150px;
+  font-style: italic;
+  font-style:bold  
+}
+.sider{
+  height: relative;
+}
