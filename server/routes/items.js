@@ -7,12 +7,13 @@ Router.route('/addItem').post( (req,res) => {
     console.log("I am routeAddItem");
     const { name, price, details, image } = req.body ;
     addItem({ name, price, details, image }).then((result) => {
+        console.log("Hereeeeee is result ",result)
         res.send(result);
     });
 
 });
 
-Router.route('/routeAllItems').get( (req,res) => {
+Router.route('/allItems').get( (req,res) => {
    
     console.log("I am routeAllItems");
     getAllItems().then((result) => {

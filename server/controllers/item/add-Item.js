@@ -8,6 +8,7 @@ const addItem = async ({ name ,  price ,  details ,  image }) => {
         {price:price , details:details , image:image , created:new Date()} , 
         {upsert:true}
       );
+      // console.log("Response which is going to Return", res);
       return res ;
 
 }

@@ -2,6 +2,7 @@ import React from 'react';
 import 'antd/dist/antd.css';
 import { connect } from 'react-redux';
 import { addItem } from '../../actions/items';
+import { getAllItems } from '../../actions/items';
 import './item.css'
 import {
  Form,
@@ -20,6 +21,9 @@ class itemGrid extends React.Component {
    confirmDirty: false,
    autoCompleteResult: [],
  };
+ componentWillMount = () => {
+    this.props.getAllItems();
+ }
  handleSubmit = e => {
    e.preventDefault();
    this.props.form.validateFieldsAndScroll((err, values) => {
@@ -76,7 +80,7 @@ class itemGrid extends React.Component {
        <Form.Item className="form-item" label="Price">
          {getFieldDecorator('price',{
            rules: [{ required: true, message: 'Please input item Price!', whitespace: true }],
-         })(<Input  prefix="Pak" suffix="pkr"/>)}
+         })(<Input  prefix="US" suffix="$"/>)}
        </Form.Item>
        
        <Form.Item className="form-item"
@@ -107,13 +111,16 @@ class itemGrid extends React.Component {
        </Form.Item>
 
      </Form>
+     <br /><br /><br />
+
      </div>
    );
  }
 }
-const ItemGrid = Form.create({ name: 'register' })(itemGrid);
+const ItemGrid = Form.create({ name: 'item' })(itemGrid);
 const mapDispatchToProps = (dispatch) => ({
  addItem: (inputObj) => dispatch( addItem(inputObj) ),
+ getAllItems: () => dispatch( getAllItems())
 })
 const mapStateToProps = (state) => ({
 })
