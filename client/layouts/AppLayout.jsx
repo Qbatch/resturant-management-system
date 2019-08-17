@@ -9,7 +9,6 @@ class AppLayout extends React.Component {
 
     return (
         <div>
-            <h1 > Application Layout (You are in Application) </h1>
             <Layout style={{ height: '100vh' }}>
                 { children }
             </Layout>

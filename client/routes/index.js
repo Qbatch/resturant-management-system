@@ -7,7 +7,12 @@ import EmptyLayout from '../layouts/EmptyLayout.jsx';
 import AppLayout from '../layouts/AppLayout.jsx';
 import Login from '../components/authentication/login.jsx';
 import Register from '../components/authentication/register.jsx';
-import Home from '../components/Home.jsx';
+import Menu from '../components/menu/menu.jsx';
+import AdminDashboard from '../components/admin-dashboard/admin-dashboard.jsx';
+import Rider from "../components/rider's-portal/rider's-portal.jsx"
+import AdminLayout from '../layouts/AdminLayout.jsx';
+import Items from '../components/item/item.jsx';
+
 
 const AUTHORIZATION = localStorage.getItem('loginToken');
 console.log("Toooooooken ::", AUTHORIZATION);
@@ -38,13 +43,18 @@ class RenderRoutes extends React.Component {
         <Router>
           <Switch>
             <Route exact path="/">
-              <Redirect to="/home" />
+              <Redirect to="/login" />
             </Route>
             
-            <EmptyLayoutRoute path="/login" component={Login} user={user} />
+            {/* <EmptyLayoutRoute path="/login" component={Login} user={user} /> */}
             <EmptyLayoutRoute path="/register" component={Register} user={user} />
+            <EmptyLayoutRoute path="/rider's-portal" component={Rider} user={user} />
+            <EmptyLayoutRoute path="/menu" component={Menu} user={user} />
 
-            <AppLayoutRoute path="/home" component={Home} user={user} />
+            <AdminLayoutRoute path="/admin-dashboard" component={AdminDashboard} user={user} />
+            <AdminLayoutRoute path="/items" component={Items} user={user} />
+            
+            <AppLayoutRoute path="/login" component={Login} user={user} />
           
           </Switch>
         </Router>
@@ -62,36 +72,85 @@ class RenderRoutes extends React.Component {
 
 const EmptyLayoutRoute = ({ component: Component, user, ...rest}) => {
   let showLayout = true;
-  if (!user || !user._id) {
+  if (!user && !user.email) {
     showLayout = false;
   }
 
   return (
     <Route {...rest} render={matchProps => (
+      
       showLayout
-      ? (<Redirect to='/home' />)
+      ? ( 
+          <EmptyLayout>
+            <Component {...matchProps} />
+          </EmptyLayout>
+        )
       : (
-        <EmptyLayout>
+          <Redirect to='/login' />
+        )
+    )} />
+  )
+
+};
+
+const AppLayoutRoute = ({ component: Component, user, ...rest}) => {
+  
+  const redirectToRelativePage = () => {
+    if (user.role==="admin") {
+      return (<Redirect to='/admin-dashboard' />);
+    } else if (user.role==="customer") {
+        return (<Redirect to='/menu' />);
+    } else if (user.role==="rider") {
+        return (<Redirect to="/rider's-portal" />)
+    }
+  }
+  
+  let showLayout = false;
+  if ( user && user.email ) {
+    showLayout = true;
+  }
+
+  return (
+    <Route {...rest} render={ matchProps => (
+      showLayout
+      ? (
+        // console.log("True Condition"),
+ 
+        redirectToRelativePage()
+      )
+      : ( 
+        // console.log("False Condition"),
+        // <Redirect to="/login" />
+        <AppLayout>
           <Component {...matchProps} />
-        </EmptyLayout>)
+        </AppLayout>
+      )
     )} />
   )
 };
 
-const AppLayoutRoute = ({ component: Component, user, ...rest}) => {
+
+const AdminLayoutRoute = ({ component: Component, user, ...rest }) => {
+  const redirectToRelativePage = () => {
+    if (!user._id) {
+      return (<Redirect to='/login' />);
+    } else if (user.role==="admin") {
+      return (<Redirect to='/admin-dashboard' />);
+    }
+  }
+
   let showLayout = true;
-  if (!user || !user._id) {
+  if (!user._id || !user.role==="admin") {
     showLayout = false;
   }
 
   return (
     <Route {...rest} render={matchProps => (
       showLayout
-      ? (<Redirect to='/login' />)
-      : (
-        <AppLayout>
+        ? (<AdminLayout>
           <Component {...matchProps} />
-        </AppLayout>)
+        </AdminLayout>)
+        : redirectToRelativePage()
     )} />
   )
 };
@@ -106,3 +165,25 @@ const mapDispatchToProps = (dispatch) => ({
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(RenderRoutes);
+
+
+
+// const EmptyLayoutRoute = ({ component: Component, user, ...rest}) => {
+//   let showLayout = true;
+//   if (!user || !user._id) {
+//     showLayout = false;
+//   }
+
+//   return (
+//     <Route {...rest} render={matchProps => (
+      
+//       showLayout
+//       ? (<Redirect to='/home' />)
+//       : ( 
+//         <EmptyLayout>
+//           <Component {...matchProps} />
+//         </EmptyLayout>)
+//     )} />
+//   )
+
+// };

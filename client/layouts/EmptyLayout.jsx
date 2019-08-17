@@ -9,7 +9,6 @@ class EmptyLayout extends React.Component {
 
     return (
       <Layout style={{ height: '100vh' }}>
-        <h1 > First Page </h1>
         { children }
       </Layout>
     );

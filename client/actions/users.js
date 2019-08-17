@@ -1,6 +1,6 @@
 import Axios from 'axios'
 import {notification} from 'antd';
-
+// import { Redirect } from 'react-router-dom'
 
 //////       REGISTER_USER_REQUEST     ///////
 
@@ -68,7 +68,8 @@ export const loginUser = ({ email, password }) => (dispatch) => {
       Axios.defaults.headers.common.Authorization = `JWT ${token}`;
       console.log("token in loginUser Action is  ::::  ",token);
     
-      this.props.history.push('/home');
+    //   <Redirect to='/home' />
+    //   HashHistory.push('/home');
       notification.success({
         message: 'Login User',
         description: 'You are sign in successfully !'
@@ -105,8 +106,8 @@ export const getUser = () => (dispatch) => {
     }) 
     .then(({ data }) => {
         const { user } = data;
-        console.log("user in the Ation of getUser is  :::: ", user)
-      return dispatch({ type: 'GET_USER_SUCCESS', payload: user });
+        console.log("user in the Action of getUser is  :::: ", user)
+        return dispatch({ type: 'GET_USER_SUCCESS', payload: user });
     })
     .catch( (error) => {
         console.log(error, 'Errr')

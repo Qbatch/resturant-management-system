@@ -71,6 +71,12 @@ const user = (state = initialState, action) => {
       };
     }
 
+    case 'LOGOUT_USER_SUCCESS': {
+      return {
+        ...initialState
+      };
+    }
+
 
 
 

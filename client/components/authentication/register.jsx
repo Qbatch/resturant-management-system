@@ -107,8 +107,9 @@ class registrationForm extends React.Component {
 
     return (
       <Form {...formItemLayout} onSubmit={this.handleSubmit}>
-
-
+        <br /><br />
+        <h1 className="h">Please Register Yourself here!</h1>
+        <br />
         <Form.Item className="form-item" 
           label={"Full Name"}
         >
@@ -223,7 +224,7 @@ const mapDispatchToProps = (dispatch) => ({
 }) 
 
 const mapStateToProps = (state) => ({ 
-    users: state.users.list, 
+    user: state.user
 })
 
 export default connect(mapStateToProps , mapDispatchToProps)(RegistrationForm) ;

@@ -2,7 +2,7 @@ import express from 'express'
 import {addItem , getAllItems} from '../controllers/item';
 const Router = express.Router();
 
-Router.route('/routeAddItem').post( (req,res) => {
+Router.route('/addItem').post( (req,res) => {
     
     console.log("I am routeAddItem");
     const { name, price, details, image } = req.body ;
