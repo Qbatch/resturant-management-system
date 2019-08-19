@@ -12,6 +12,7 @@ import AdminDashboard from '../components/admin-dashboard/admin-dashboard.jsx';
 import Rider from "../components/rider's-portal/rider's-portal.jsx"
 import AdminLayout from '../layouts/AdminLayout.jsx';
 import Items from '../components/item/item.jsx';
+import AllItems from '../components/item/all-items.jsx';
 
 
 const AUTHORIZATION = localStorage.getItem('loginToken');
@@ -53,6 +54,7 @@ class RenderRoutes extends React.Component {
 
             <AdminLayoutRoute path="/admin-dashboard" component={AdminDashboard} user={user} />
             <AdminLayoutRoute path="/items" component={Items} user={user} />
+            <AdminLayoutRoute path="/all-items" component={AllItems} user={user} />
             
             <AppLayoutRoute path="/login" component={Login} user={user} />
           
@@ -165,25 +167,3 @@ const mapDispatchToProps = (dispatch) => ({
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(RenderRoutes);
-
-
-
-// const EmptyLayoutRoute = ({ component: Component, user, ...rest}) => {
-//   let showLayout = true;
-//   if (!user || !user._id) {
-//     showLayout = false;
-//   }
-
-//   return (
-//     <Route {...rest} render={matchProps => (
-      
-//       showLayout
-//       ? (<Redirect to='/home' />)
-//       : ( 
-//         <EmptyLayout>
-//           <Component {...matchProps} />
-//         </EmptyLayout>)
-//     )} />
-//   )
-
-// };

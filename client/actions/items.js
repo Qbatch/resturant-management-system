@@ -46,28 +46,26 @@ export const getAllItems = () => (dispatch) => {
     Axios({
         method : "GET",
         url : 'http://localhost:3002/api/v1/items/allItems',
-        //http://localhost:3002/api/v1/items/allItems
     })
-    .then(function ({config}) {
-        const {data} = config;
-        console.log(" This is ADDITEM Axios Response " , data)
-        const items = JSON.parse(data)    
-        console.log(" This is all Items " , items)
-        
+    .then(function ({data}) {
+
+        // console.log(" This is ALL ITEMS axios response " , data)
+        const item = data    
+
         notification.success({
-          message: 'Item',
-          description: 'Item Added Successfully !'
+          message: 'Item Panel',
+          description: 'Here is your Item Panel !'
         });
         return dispatch({
             type : 'GET_ALL_ITEMS_SUCCESS',
-            payload : items 
+            payload : item   
         });
     })
     .catch( (error) => {
         // const { data } = error.response.data;
         notification.error({
-          message: 'All Items',
-          description: "Hello its Error"
+          message: 'Item Panel',
+          description: "OOPs! Something Wrong happens with your Item Panel"
         });
     
         dispatch({ type: 'GET_ALL_ITEMS_FAILED' });

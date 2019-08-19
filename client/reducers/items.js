@@ -7,7 +7,7 @@ const initialState = {
     allItems:null
    };
 const item = (state = initialState, action) => {
-    console.log("consoling Loggggggg in switch :",action)  
+    // console.log("consoling Loggggggg in switch :",action)  
     switch (action.type) {
 
         case 'ADD_ITEM_REQUEST': {

@@ -3,7 +3,6 @@ import { Layout, Menu, Breadcrumb, Icon, Dropdown } from 'antd';
 import { BrowserRouter as Router, Route, Switch, Link, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router'
-//import {history} from '../configureStore'
 import { logoutUser } from '../actions/admin';
 
 import './Layout.css';
@@ -53,8 +52,15 @@ class AdminLayout extends React.Component {
 
             <Menu.Item key="2">
               <Link to="/items">
-                <Icon type="table" />
+                <Icon type="shopping-cart" />
                 <span>Items</span>
+              </Link>
+            </Menu.Item>
+
+            <Menu.Item key="3">
+              <Link to="/all-items">
+                <Icon type="table" />
+                <span>Items Grid</span>
               </Link>
             </Menu.Item>
 
